@@ -1,10 +1,35 @@
-# USB Harness
+<div align="center">
 
-> **deepseek-harness 的便携式变体（variant）**——把 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
-> 的全部能力装进一个 **即插即用的 U 盘包**：免安装、零宿主机污染、数据随盘、
-> 适配中国网络、支持自定义 OpenAI 兼容网关。
+# 🚀 USB Harness — 即插即用的 U 盘 AI 助手
+
+**deepseek-harness 便携式变体 · 免安装 LLM Web UI · 离线可用 · 中国网络适配**
+
+<img src="docs/banner.svg" alt="USB Harness banner" width="800"/>
+
+[![License](https://img.shields.io/github/license/tmy2623231/USB-Harness?color=blue)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/tmy2623231/USB-Harness?color=orange&label=latest)](https://github.com/tmy2623231/USB-Harness/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/tmy2623231/USB-Harness/total?color=green)](https://github.com/tmy2623231/USB-Harness/releases/latest)
+[![Stars](https://img.shields.io/github/stars/tmy2623231/USB-Harness?color=yellow)](https://github.com/tmy2623231/USB-Harness)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet)](launch.sh)
+[![dsh](https://img.shields.io/badge/dsh-0.1.1--rc.1-purple)](https://github.com/deepseek-ai/deepseek-harness)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/tmy2623231/USB-Harness/pulls)
+
+</div>
+
+> **一句话**：把 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的全部 AI 能力装进一个 **U 盘**——
+> 插上即用，免安装、零宿主机污染、数据随盘，支持任意 **OpenAI 兼容模型网关**（Ollama / 阿里云百炼 / OpenRouter / vLLM / 本地模型）。
 
 ---
+
+## 🎯 适合谁
+
+| 场景 | 为什么选它 |
+|------|-----------|
+| **不想折腾环境的开发者 / 学生** | 免装 Node、npm、Python，下载解压双击即用 |
+| **离线 / 内网环境** | 完整包自带运行时（便携 Node + dsh + 离线包），不联网也能启动 |
+| **多台电脑切换** | U 盘一插，配置、会话、模型全带走（数据随盘） |
+| **局域网共享** | 一台电脑起服务，手机 / 平板 / 同事浏览器直接访问 |
+| **国内网络用户** | Node 下载、npm 安装全程中国镜像优先，失败自动回退官方源 |
 
 ## 🚀 下载（推荐：下载即用）
 
@@ -26,23 +51,7 @@
 
 ---
 
-## 这是什么
-
-USB Harness 是 **[deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) 的深度定制变体**，
-保留了原版的核心 AI 能力（Web UI、实时对话、流式输出、模型加载、工具/插件、MCP、
-权限模式等），在此基础上做了面向「便携 + 国内网络 + 白标」的改造：
-
-| 层 | 来源 | 说明 |
-|----|------|------|
-| **AI 核心** | deepseek-harness（`@deepseek-ai/dsh`） | Web 界面、对话、流式输出、模型、工具/插件、权限体系——**100% 保留原版能力** |
-| **便携外壳** | 本项目自研 | 便携 Node 运行时、数据随盘、免安装启动框架（交互菜单） |
-| **品牌改造** | 本项目 `brand-patch/` | 去 DeepSeek 品牌标识，白标为「USB Harness」 |
-| **网络适配** | 本项目自研 | 中国镜像（npmmirror）+ U 盘离线安装包，尽量少联网 |
-
-> 核心 dsh 来自 deepseek-harness 官方预编译包（未裁剪），本项目的改造集中在
-> 「便携化外壳」与「品牌/本地化」两层。**许可与 deepseek-harness 一致（MIT）**，详见 [LICENSE](LICENSE)。
-
-## 特性
+## ✨ 功能特性
 
 - ✅ **100% dsh 能力**：Web UI、实时对话、流式输出、模型加载、headless、工具/插件、MCP、权限模式
 - ✅ **免安装便携**：便携 Node.js + 预置依赖，宿主机无需 Node/npm/Python
