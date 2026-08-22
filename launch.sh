@@ -72,8 +72,14 @@ start_web() {
   echo "  按 Ctrl+C 停止服务"
   echo ""
   # USB Harness: dsh 自动打开的是 http://0.0.0.0:port（浏览器不可访问），
-  # 故加 --no-open，由这里延迟 2 秒打开正确的 http://127.0.0.1:port。
-  ( sleep 2; command -v xdg-open >/dev/null 2>&1 && xdg-open "http://127.0.0.1:$PORT" >/dev/null 2>&1 || open "http://127.0.0.1:$PORT" >/dev/null 2>&1 ) &
+  # 故加 --no-open，由这里轮询端口就绪后再打开正确的 http://127.0.0.1:port。
+  ( for i in $(seq 1 120); do
+      if (echo > /dev/tcp/127.0.0.1/$PORT) 2>/dev/null; then
+        command -v xdg-open >/dev/null 2>&1 && xdg-open "http://127.0.0.1:$PORT" >/dev/null 2>&1 || open "http://127.0.0.1:$PORT" >/dev/null 2>&1
+        break
+      fi
+      sleep 0.5
+    done ) &
   exec "$DSH_BIN" web --port "$PORT" --host 0.0.0.0 --no-open 2>&1 | tee -a "$LOG_FILE"
 }
 
