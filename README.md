@@ -42,6 +42,9 @@ USB Harness 是 **[deepseek-harness](https://github.com/deepseek-ai/deepseek-har
 
 把整个 `USB-Harness` 目录复制到 U 盘（建议 NTFS 或 exFAT、USB 3.0+、≥4GB 空间）。
 
+> **说明**：从 GitHub 下载的 ZIP 解压后文件夹名是 `USB-Harness-main`（GitHub 的
+> `仓库名-分支名` 固定命名，属正常现象），把它重命名为 `USB-Harness` 即可，不改也不影响使用。
+
 ### 2. 启动
 
 **Windows**：双击 **`launch.bat`**。
