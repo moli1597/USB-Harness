@@ -104,23 +104,23 @@ function Start-Web {
     $env:DSH_HOME = $DshHome
     $env:Path = "$NodeDir;$($DshCmd | Split-Path);$env:Path"
     # USB Harness: dsh 自动打开的是 http://0.0.0.0:port（浏览器不可访问），
-    # 故加 --no-open，由这里轮询端口就绪后再打开正确的 http://127.0.0.1:port
-    #（固定延迟可能早于服务就绪，浏览器不会自动重试）。
+    # 故加 --no-open，由这里轮询端口「可连接」后再打开正确的 http://127.0.0.1:port。
+    # 注意：不能用 TcpListener 绑定探测——Windows 允许特定 IP 与通配 0.0.0.0 绑定共存，
+    # 会永远误判为"空闲"而不打开浏览器；必须用连接探测（能连上 = 服务就绪）。
     Start-Job -ArgumentList $usePort -ScriptBlock {
         param($p)
         $ready = $false
         for ($i = 0; $i -lt 120; $i++) {
             Start-Sleep -Milliseconds 500
-            $listener = $null
+            $client = New-Object System.Net.Sockets.TcpClient
             try {
-                $listener = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, $p)
-                $listener.Start()   # 能绑定 = 端口空闲（服务未起），继续等
-            } catch {
-                $ready = $true      # 绑定失败 = 端口已被 dsh 占用
-                break
-            } finally {
-                if ($null -ne $listener) { $listener.Stop() }
-            }
+                $iar = $client.BeginConnect('127.0.0.1', $p, $null, $null)
+                if ($iar.AsyncWaitHandle.WaitOne(1500)) {
+                    $client.EndConnect($iar)
+                    $ready = $true
+                    break
+                }
+            } catch { } finally { $client.Close() }
         }
         if ($ready) { Start-Process "http://127.0.0.1:$p" }
         else { Write-Host "端口 $p 未在 60 秒内就绪，请手动打开 http://127.0.0.1:$p" -ForegroundColor Yellow }
