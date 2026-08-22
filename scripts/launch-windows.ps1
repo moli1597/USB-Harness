@@ -96,6 +96,7 @@ function Start-Web {
     Write-Step "启动 Web 界面（http://127.0.0.1:$usePort）"
     Write-Host "  本机访问:   http://127.0.0.1:$usePort" -ForegroundColor Green
     Write-Host "  局域网访问: http://<本机IP>:$usePort" -ForegroundColor Green
+    Write-Host "  提示: 功能完整请用本机地址 127.0.0.1（局域网 IP 访问时部分功能受限）" -ForegroundColor DarkGray
     Write-Host "  按 Ctrl+C 停止服务" -ForegroundColor DarkGray
     Write-Host ''
 
