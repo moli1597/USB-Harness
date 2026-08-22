@@ -7,11 +7,12 @@
 # =============================================================================
 [CmdletBinding()]
 param(
-    [string]$Root = (Split-Path -Parent $PSScriptRoot),
+    [string]$Root = '',   # 留空则按 $PSScriptRoot 推断（param 默认值里用 $PSScriptRoot 在子进程 -File 调用时会报错）
     [switch]$Full
 )
 
 $ErrorActionPreference = 'Stop'
+if (-not $Root) { $Root = Split-Path -Parent $PSScriptRoot }
 $DataDir  = Join-Path $Root 'data\dsh'
 $CacheDir = Join-Path $Root '.cache'
 $ReadyFlag = Join-Path $Root '.ready.flag'
