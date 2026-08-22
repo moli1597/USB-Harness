@@ -6997,12 +6997,11 @@ window.__ModuleLoader__.load({
 		* @param props.onClick - menu toggle.
 		* @returns the chip button element.
 		*/
-		function WorkspaceChip({ buttonRef, label, menuOpen = false, onClick, t, hint }) {
+		function WorkspaceChip({ buttonRef, label, menuOpen = false, onClick, t }) {
 			return (0, react_jsx_runtime.jsxs)("button", {
 				ref: buttonRef,
 				type: "button",
 				className: HeroShell_module_css_default.workspace,
-				title: hint ?? t("hero.chooseWorkspace"),
 				"aria-label": t("hero.chooseWorkspace"),
 				"aria-haspopup": "menu",
 				"aria-expanded": menuOpen,
@@ -7190,10 +7189,6 @@ window.__ModuleLoader__.load({
 				input: inputState
 			};
 			const chipTitle = pendingWorkspace?.title ?? (sessionId === void 0 ? void 0 : sessionWorkspace?.title ?? (workspaces.phase === "ready" || cwd === void 0 || cwd === "" ? void 0 : workspaceLabel(cwd)));
-			// USB Harness: 工作区悬停提示 —— 显示当前工作区，点击可更换
-			const defaultWorkspaceHint = cwd === void 0 || cwd === ""
-				? "点击选择工作区（项目文件存放于所选工作区）"
-				: "当前工作区：" + cwd + "（点击可更换）";
 			const heroWorkspaceRow = (0, react_jsx_runtime.jsxs)("div", {
 				className: ConversationRoot_module_css_default.heroWorkspaceRow,
 				children: [
@@ -7201,7 +7196,6 @@ window.__ModuleLoader__.load({
 						buttonRef: pickerAnchor,
 						label: chipTitle,
 						menuOpen: pickerOpen,
-						hint: defaultWorkspaceHint,
 						onClick: () => {
 							setPickerOpen((open) => !open);
 						},
