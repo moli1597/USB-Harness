@@ -71,7 +71,10 @@ start_web() {
   echo "  局域网访问: http://<本机IP>:$PORT"
   echo "  按 Ctrl+C 停止服务"
   echo ""
-  exec "$DSH_BIN" web --port "$PORT" --host 0.0.0.0 2>&1 | tee -a "$LOG_FILE"
+  # USB Harness: dsh 自动打开的是 http://0.0.0.0:port（浏览器不可访问），
+  # 故加 --no-open，由这里延迟 2 秒打开正确的 http://127.0.0.1:port。
+  ( sleep 2; command -v xdg-open >/dev/null 2>&1 && xdg-open "http://127.0.0.1:$PORT" >/dev/null 2>&1 || open "http://127.0.0.1:$PORT" >/dev/null 2>&1 ) &
+  exec "$DSH_BIN" web --port "$PORT" --host 0.0.0.0 --no-open 2>&1 | tee -a "$LOG_FILE"
 }
 
 # 重置
