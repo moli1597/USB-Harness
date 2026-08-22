@@ -6,6 +6,26 @@
 
 ---
 
+## 🚀 下载（推荐：下载即用）
+
+**完整包已含运行时（便携 Node + dsh 依赖 + 离线安装包），解压即可使用，无需联网安装：**
+
+> ## 👉 [前往 Releases 页下载最新完整包](https://github.com/tmy2623231/USB-Harness/releases/latest)
+
+| 方式 | 说明 |
+|------|------|
+| **Releases 完整包**（推荐） | 下载 `USB-Harness-with-runtime.zip`（约 137MB）→ 解压 → 双击 `launch.bat` → 直接用 |
+| 源码 ZIP / git clone | 仅源码（不含运行时），首次启动需联网安装一次（走中国镜像 + 离线包） |
+
+**完整包使用步骤**：
+
+1. 在 [Releases 页](https://github.com/tmy2623231/USB-Harness/releases/latest) 下载 `USB-Harness-with-runtime.zip`
+2. 解压到 U 盘（建议 NTFS 或 exFAT、≥4GB 空间）
+3. Windows 双击 **`launch.bat`**；Linux/macOS 执行 **`bash launch.sh`**
+4. 浏览器自动打开 `http://127.0.0.1:3080`，在「设置 → 模型」配置自定义 OpenAI 兼容网关即可使用
+
+---
+
 ## 这是什么
 
 USB Harness 是 **[deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) 的深度定制变体**，
@@ -40,9 +60,13 @@ USB Harness 是 **[deepseek-harness](https://github.com/deepseek-ai/deepseek-har
 
 ### 1. 拷贝到 U 盘
 
-把整个 `USB-Harness` 目录复制到 U 盘（建议 NTFS 或 exFAT、USB 3.0+、≥4GB 空间）。
+**方式一（推荐）**：从 [Releases 页](https://github.com/tmy2623231/USB-Harness/releases/latest) 下载
+`USB-Harness-with-runtime.zip` 完整包（含运行时），解压后拷贝到 U 盘即可，**无需联网安装**。
 
-> **说明**：从 GitHub 下载的 ZIP 解压后文件夹名是 `USB-Harness-main`（GitHub 的
+**方式二（源码）**：用「Code → Download ZIP」下载源码（或 `git clone`），把整个目录复制到 U 盘
+（建议 NTFS 或 exFAT、USB 3.0+、≥4GB 空间）。源码不含运行时，首次启动会提示联网安装一次。
+
+> **说明**：GitHub 下载的 ZIP 解压后文件夹名是 `USB-Harness-main`（GitHub 的
 > `仓库名-分支名` 固定命名，属正常现象），把它重命名为 `USB-Harness` 即可，不改也不影响使用。
 
 ### 2. 启动
