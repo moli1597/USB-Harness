@@ -9,11 +9,14 @@ param(
     [string]$NodeVersion = '22.23.2',           # 锁定 22.x LTS（满足 dsh ^22.19 || >=24）
     [string]$DshVersion  = '0.1.1-rc.1',        # 锁定 dsh 版本
     [switch]$Force,                             # 强制重装
-    [string]$Root        = (Split-Path -Parent $PSScriptRoot)  # 项目根目录（scripts/ 的上一级）
+    [string]$Root        = ''                   # 项目根目录；留空则按 $PSScriptRoot 推断
 )
 
+# 注意：param 默认值里不能用 $PSScriptRoot（子进程 -File 调用时为空串会报错），
+# 必须在脚本体内解析。
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+if (-not $Root) { $Root = Split-Path -Parent $PSScriptRoot }
 
 $Arch         = 'windows-x64'   # 本地运行时目录名（.cache\runtimes\windows-x64\node）
 $DownloadArch = 'win-x64'       # nodejs.org / npmmirror 下载文件名用的是 win-x64
