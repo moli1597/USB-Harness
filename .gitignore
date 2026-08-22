@@ -1,0 +1,21 @@
+# --- 运行时与依赖（随盘携带，不提交 git） ---
+.cache/
+
+# --- 运行期数据（含明文凭据，绝不提交 git） ---
+data/dsh/
+data/logs/
+
+# --- 默认工作区（用户项目文件） ---
+work/
+
+# --- ready 标记 ---
+.ready.flag
+
+# --- 回滚备份（原始 dsh 文件） ---
+.backup/
+
+# --- 系统/编辑器 ---
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.log
