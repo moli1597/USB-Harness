@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "USB Harness",
+  "short_name": "USB-H",
+  "start_url": "/",
+  "scope": "/",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

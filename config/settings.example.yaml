@@ -1,0 +1,42 @@
+# =============================================================================
+# USB Harness — DSH 配置参考模板（仅作参考，非必需）
+# =============================================================================
+# 重要提示：
+#   1. dsh 在首次运行 `dsh web` 时会自动初始化真实的 settings.yaml 到
+#      data/dsh/settings.yaml，且格式随开发者预览版本持续变化。
+#   2. 推荐优先通过 Web UI 的「设置 → 模型」配置，UI 会写入正确格式。
+#   3. 本文件仅供「自定义 OpenAI 兼容网关 / 本地 Ollama」场景参考，
+#      字段嵌套请以当前版本 Web UI 实际写入为准，切勿盲目照抄。
+#   4. 若想手动配置，请将本文件内容合并进 data/dsh/settings.yaml（不要覆盖）。
+# =============================================================================
+
+# ---- 例 1：DeepSeek 官方 API（在 Web UI 的 DeepSeek 卡片填写 API Key 即可）----
+# 通常无需手写；Web UI 保存后会自动生成类似结构：
+# agent-default-model:
+#   provider: deepseek-official
+#   model: deepseek-v4-pro          # 按你的实际可用模型填写
+#   reasoningEffort: max            # 按需
+
+# ---- 例 2：OpenAI 兼容网关（自定义 provider，如自建 Bifrost / 阿里云百炼兼容端点）----
+# providers:
+#   my-gateway:                     # provider id，创建后不可重命名，只能替换
+#     apiKeyEnv: GATEWAY_API_KEY    # 从环境变量读取密钥（可选，也可用 Web UI 保存）
+#     api: openai-completions       # 协议：OpenAI 兼容
+#     baseURL: https://your-gateway.example.com/v1
+#     models:
+#       - id: qwen3.8-max           # 网关暴露的模型 id（按实际填写）
+#       - id: deepseek-v4-flash
+#       - id: gemma4
+
+# ---- 例 3：本地 Ollama（OpenAI 兼容端点）----
+# providers:
+#   ollama-local:
+#     api: openai-completions
+#     baseURL: http://127.0.0.1:11434/v1
+#     models:
+#       - id: gemma4
+#       - id: qwen3.8-max
+
+# ---- 说明 ----
+# - 字段名与嵌套层级在开发者预览期内可能变动，配置前请核对当前版本文档。
+# - 密钥明文存放于 data/dsh/.credentials.yaml，U 盘丢失即密钥泄露，务必加密 U 盘。
