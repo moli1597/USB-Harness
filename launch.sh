@@ -69,6 +69,7 @@ start_web() {
   echo ""
   echo "  本机访问:   http://127.0.0.1:$PORT"
   echo "  局域网访问: http://<本机IP>:$PORT"
+  echo "  提示: 功能完整请用本机地址 127.0.0.1（局域网 IP 访问时部分功能受限）"
   echo "  按 Ctrl+C 停止服务"
   echo ""
   # USB Harness: dsh 自动打开的是 http://0.0.0.0:port（浏览器不可访问），
