@@ -93,7 +93,7 @@ function Start-Web {
         Write-WarnMsg '3080 已被占用，自动选择空闲端口 ...'
         $usePort = Get-FreePort -StartPort 3081
     }
-    Write-Step "启动 Web 界面（http://0.0.0.0:$usePort）"
+    Write-Step "启动 Web 界面（http://127.0.0.1:$usePort）"
     Write-Host "  本机访问:   http://127.0.0.1:$usePort" -ForegroundColor Green
     Write-Host "  局域网访问: http://<本机IP>:$usePort" -ForegroundColor Green
     Write-Host "  按 Ctrl+C 停止服务" -ForegroundColor DarkGray
@@ -101,7 +101,14 @@ function Start-Web {
 
     $env:DSH_HOME = $DshHome
     $env:Path = "$NodeDir;$($DshCmd | Split-Path);$env:Path"
-    & $DshCmd web --port "$usePort" --host 0.0.0.0 2>&1 | Tee-Object -FilePath $LogFile -Append
+    # USB Harness: dsh 自动打开的是 http://0.0.0.0:port（浏览器不可访问），
+    # 故加 --no-open，由这里延迟 2 秒打开正确的 http://127.0.0.1:port。
+    Start-Job -ArgumentList $usePort -ScriptBlock {
+        param($p)
+        Start-Sleep -Seconds 2
+        Start-Process "http://127.0.0.1:$p"
+    } | Out-Null
+    & $DshCmd web --port "$usePort" --host 0.0.0.0 --no-open 2>&1 | Tee-Object -FilePath $LogFile -Append
     $exit = $LASTEXITCODE
     Write-Host ''
     Write-Host "dsh 已退出（代码 $exit）。按回车键返回菜单 ..." -ForegroundColor DarkGray
