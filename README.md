@@ -45,9 +45,58 @@
 **完整包使用步骤**：
 
 1. 在 [Releases 页](https://github.com/tmy2623231/USB-Harness/releases/latest) 下载 `USB-Harness-with-runtime.zip`
-2. 解压到 U 盘（建议 NTFS 或 exFAT、≥4GB 空间）
+2. 解压到 U 盘（**必须 NTFS**、≥4GB 空间，详见下方「U 盘格式要求」）
 3. Windows 双击 **`launch.bat`**；Linux/macOS 执行 **`bash launch.sh`**
 4. 浏览器自动打开 `http://127.0.0.1:3080`，在「设置 → 模型」配置自定义 OpenAI 兼容网关即可使用
+
+---
+
+## 💾 U 盘格式要求（必读）
+
+> **运行 USB Harness 的 U 盘必须格式化为 NTFS。** FAT32 与 exFAT 均无法运行本项目。
+
+**原因**：dsh 启动时会在 `data/dsh/profiles/node_modules/` 下创建符号链接（Windows 上为 junction）
+指向 `.cache/app/node_modules/` 中的真实包（模块回退机制）。**只有 NTFS 支持创建这类链接**；
+FAT32 与 exFAT 不支持，启动会直接崩溃：
+
+```
+Error: EISDIR: illegal operation on a directory, symlink ...
+```
+
+### 三种常见格式对比
+
+| 格式 | 支持链接 | 单文件上限 | 跨平台兼容性 | 本项目 |
+|------|---------|-----------|-------------|--------|
+| **NTFS** | 支持（junction） | 无（最大 16EB） | Windows 原生读写；macOS 默认只读（需 Paragon NTFS / Tuxera NTFS 驱动）；Linux 可读写（ntfs-3g） | ✅ **必须使用** |
+| **exFAT** | 不支持 | 无（最大 128PB） | Windows / macOS 原生读写；Linux 5.4+ 内核支持 | ❌ 不可用 |
+| **FAT32** | 不支持 | **4GB**（单个文件超过 4GB 无法存储） | 全平台（旧设备兼容性最好） | ❌ 不可用 |
+
+> 若 U 盘只做普通文件存储（视频 / 文档 / 跨平台交换），FAT32（小文件、老设备）或 exFAT（大文件、跨平台）
+> 是常用选择；但**运行 USB Harness 必须 NTFS**——存储用途与运行用途不要混用同一张盘。
+
+### 格式化 / 转换步骤（Windows）
+
+**方法一：格式化（新 U 盘或已备份数据）**
+1. 备份 U 盘内所有数据（格式化会清空）
+2. 资源管理器右键 U 盘 → **格式化**
+3. 文件系统选择 **NTFS** → 分配单元大小保持默认 → 开始
+4. 完成后把 USB Harness 目录复制进去即可
+
+**方法二：无损转换（U 盘已有数据，推荐）**
+1. 先运行 `chkdsk X: /f`（X 为盘符）检查并修复文件系统错误
+2. 若卷标为空，先设置：`label X: USB-Harness`
+3. 执行转换：`convert X: /fs:ntfs`（无需格式化，数据保留）
+4. 若提示卷被占用，关闭占用程序后重试，或按提示安排在下次重启时转换
+
+### 注意事项
+
+- **转换 / 格式化前务必备份数据**，并先跑 `chkdsk X: /f`——文件系统有坏块时转换可能中途报错
+  （如 `数据错误(循环冗余检查)`），虽然多数情况下仍能完成转换，但风险不可控
+- 转换成功后，若此前在 FAT32/exFAT 上运行失败过，残留的 `data\dsh\profiles\node_modules\@deepseek-ai`
+  空目录会被 dsh 自动重建，无需手动清理；仍异常可运行 `launch.bat setup` 或 `scripts/reset-windows.ps1`
+- **跨平台注意**：NTFS 在 macOS 默认只读，macOS 上写 U 盘需安装 NTFS 驱动（Paragon / Tuxera）；
+  若主要在 macOS 使用，建议数据盘与运行盘分开——数据盘可用 exFAT，运行盘保持 NTFS
+- U 盘建议 USB 3.0+、容量 ≥ 8GB（完整包约 137MB，但运行期会产生日志与模型缓存）
 
 ---
 
@@ -63,7 +112,7 @@
 - ✅ **U 盘离线安装包**：`.cache/downloads/` 内置 Node 安装包，重装不依赖网络
 - ✅ **软重置**：清配置数据但保留运行环境，重置后无需重新下载
 - ✅ **默认监听 0.0.0.0:3080**：本机 + 局域网可访问；端口占用自动顺延
-- ✅ **exFAT 友好**：核心用 npm 扁平安装（无符号链接），规避 exFAT 限制
+- ✅ **U 盘格式明确**：dsh 运行时依赖符号链接（junction），U 盘必须为 NTFS（见「U 盘格式要求」）
 
 ## 快速开始
 
@@ -73,7 +122,7 @@
 `USB-Harness-with-runtime.zip` 完整包（含运行时），解压后拷贝到 U 盘即可，**无需联网安装**。
 
 **方式二（源码）**：用「Code → Download ZIP」下载源码（或 `git clone`），把整个目录复制到 U 盘
-（建议 NTFS 或 exFAT、USB 3.0+、≥4GB 空间）。源码不含运行时，首次启动会提示联网安装一次。
+（**必须 NTFS**、USB 3.0+、≥4GB 空间，见「U 盘格式要求」）。源码不含运行时，首次启动会提示联网安装一次。
 
 > **说明**：GitHub 下载的 ZIP 解压后文件夹名是 `USB-Harness-main`（GitHub 的
 > `仓库名-分支名` 固定命名，属正常现象），把它重命名为 `USB-Harness` 即可，不改也不影响使用。
